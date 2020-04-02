@@ -1,12 +1,10 @@
 package model;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +41,10 @@ public class ImageReaderESI {
         for (int i = 0; i < pageNum; i++) {
             ImgList.add(reader.read(i));
         }
+        double[] arr = new double[pageNum];
+        reader.read(0).getRaster().getPixel(0, 0, arr);
+        System.out.println(arr[0]);
+
         return ImgList;
     }
 }
