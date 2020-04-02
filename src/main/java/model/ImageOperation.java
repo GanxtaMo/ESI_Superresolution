@@ -31,7 +31,7 @@ public class ImageOperation {
             dummy += Math.pow((double) pixelArray.get(i) - avg, 2);
         }
 
-        return Math.sqrt(dummy);
+        return Math.sqrt(dummy / pixelArray.size());
     }
 
 
