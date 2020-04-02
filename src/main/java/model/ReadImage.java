@@ -1,4 +1,4 @@
-package esiCode;
+package model;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class EsiApp {
+public class ReadImage {
     /**
      * @param args
      * @throws IOException
