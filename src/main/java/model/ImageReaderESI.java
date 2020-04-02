@@ -2,24 +2,24 @@ package model;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class ImageReaderESI {
 
     private String path;
+    private int pageNum; //Number of pages of tiff-movie
+    private javax.imageio.ImageReader reader; //ImageReader read set as global
 
-    public ImageReaderESI(final String path) {
+    public ImageReaderESI(final String path) throws IOException {//The constructor now calls the read method to avoid calling it in the main method
 
         this.path = path;
+        read();
 
     }
 
-    public List<BufferedImage> read() throws IOException {
+    public /*ImageReader*/ void read() throws IOException { //return set to void
 
         File file = new File(System.getProperty("user.dir") + path);
         ImageInputStream is = ImageIO.createImageInputStream(file);
@@ -31,30 +31,20 @@ public class ImageReaderESI {
             throw new IOException("Image file format not supported by ImageIO: " + file.getAbsolutePath());
         }
         // We are just looking for the first reader compatible:
-        javax.imageio.ImageReader reader = iterator.next();
+        /*javax.imageio.ImageReader*/
+        reader = iterator.next();
         iterator = null;
         reader.setInput(is);
-        int pageNum = reader.getNumImages(true);
-        System.out.println("Anzahl der Pages des TiffImages: " + pageNum + " Bilder\n");
+        pageNum = reader.getNumImages(true);
+        // System.out.println("Anzahl der Pages des TiffImages: " + pageNum + " Bilder\n");
         //reader.read(Index der Seite) // Source: https://stackoverflow.com/questions/17770071/splitting-a-multipage-tiff-image-into-individual-images-java
-        List<BufferedImage> ImgList = new ArrayList<>();
-        for (int i = 0; i < pageNum; i++) {
-            ImgList.add(reader.read(i));
-        }
-        double[] arr = new double[pageNum];
-        //reader.read(0).getRaster().getPixel(0, 0, arr);
-        ArrayList<Double> lst = new ArrayList<Double>();
-        double pxValue = 0.0;
+        //return reader;
+    }
 
-        for (int i = 0; i < pageNum; i++) {
-
-            reader.read(i).getRaster().getPixel(0, 0, arr);
-            pxValue = arr[0];
-            lst.add(pxValue);
-        }
-
-        System.out.println(lst);
-
-        return ImgList;
+    //the following method returns the brightness of a pixel of a given frame at position 'xPos,yPos' in a movie of length 'movieLength'
+    public double getPixelIntensity(int frameNo, int xPos, int yPos, int movieLength) throws IOException {
+        double[] arr = new double[movieLength];
+        reader.read(frameNo).getRaster().getPixel(xPos, yPos, arr);
+        return arr[0];
     }
 }

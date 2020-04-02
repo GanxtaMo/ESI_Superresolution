@@ -1,17 +1,12 @@
-import model.ImageOperation;
 import model.ImageReaderESI;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ESIApp {
 
     public static void main(String[] args) throws IOException {
-        List<BufferedImage> ImgList = new ArrayList<>();
         ImageReaderESI readerESI = new ImageReaderESI("/src/main/resources/QD655.tif");
-        ImgList=readerESI.read();
-        ImageOperation imageOperation= new ImageOperation(ImgList);
+        System.out.println(readerESI.getPixelIntensity(0, 0, 0, 10)); //prints the intensity value of the first image at pos 0,0. The movie length is arbitrarily set to 10 and has no effect yet.
+
     }
 }
