@@ -3,21 +3,25 @@ package model;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ImageReaderESI {
 
     private String path;
 
-public ImageReaderESI(final String path){
+    public ImageReaderESI(final String path) {
 
-    this.path=path;
+        this.path = path;
 
-}
+    }
 
-    public void read() throws IOException {
+    public List<BufferedImage> read() throws IOException {
 
         File file = new File(System.getProperty("user.dir") + path);
         ImageInputStream is = ImageIO.createImageInputStream(file);
@@ -35,5 +39,10 @@ public ImageReaderESI(final String path){
         int pageNum = reader.getNumImages(true);
         System.out.println("Anzahl der Pages des TiffImages: " + pageNum + " Bilder\n");
         //reader.read(Index der Seite) // Source: https://stackoverflow.com/questions/17770071/splitting-a-multipage-tiff-image-into-individual-images-java
+        List<BufferedImage> ImgList = new ArrayList<>();
+        for (int i = 0; i < pageNum; i++) {
+            ImgList.add(reader.read(i));
+        }
+        return ImgList;
     }
 }
