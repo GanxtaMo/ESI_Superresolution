@@ -42,8 +42,18 @@ public class ImageReaderESI {
             ImgList.add(reader.read(i));
         }
         double[] arr = new double[pageNum];
-        reader.read(0).getRaster().getPixel(0, 0, arr);
-        System.out.println(arr[0]);
+        //reader.read(0).getRaster().getPixel(0, 0, arr);
+        ArrayList<Double> lst = new ArrayList<Double>();
+        double pxValue = 0.0;
+
+        for (int i = 0; i < pageNum; i++) {
+
+            reader.read(i).getRaster().getPixel(0, 0, arr);
+            pxValue = arr[0];
+            lst.add(pxValue);
+        }
+
+        System.out.println(lst);
 
         return ImgList;
     }
