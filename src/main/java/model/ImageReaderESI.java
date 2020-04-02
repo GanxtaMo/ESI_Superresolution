@@ -7,24 +7,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class ReadImage {
-    /**
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
+public class ImageReaderESI {
 
-        File file = new File(System.getProperty("user.dir") + "/src/main/resources/QD655.tif");
+    private String path;
+
+public ImageReaderESI(final String path){
+
+    this.path=path;
+
+}
+
+    public void read() throws IOException {
+
+        File file = new File(System.getProperty("user.dir") + path);
         ImageInputStream is = ImageIO.createImageInputStream(file);
         if (is == null | is.length() == 0) {
             throw new IOException("Error");
         }
-        Iterator<ImageReader> iterator = ImageIO.getImageReaders(is);
+        Iterator<javax.imageio.ImageReader> iterator = ImageIO.getImageReaders(is);
         if (iterator == null || !iterator.hasNext()) {
             throw new IOException("Image file format not supported by ImageIO: " + file.getAbsolutePath());
         }
         // We are just looking for the first reader compatible:
-        ImageReader reader = iterator.next();
+        javax.imageio.ImageReader reader = iterator.next();
         iterator = null;
         reader.setInput(is);
         int pageNum = reader.getNumImages(true);
