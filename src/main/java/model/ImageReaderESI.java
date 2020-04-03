@@ -25,6 +25,7 @@ public class ImageReaderESI {
         read();
     }
 
+
     /**
      * Reads the specified image file.
      *
@@ -46,10 +47,6 @@ public class ImageReaderESI {
         /*javax.imageio.ImageReader*/
         reader = iterator.next();
         reader.setInput(is);
-        // final int pageNum = reader.getNumImages(true);
-        // System.out.println("Anzahl der Pages des TiffImages: " + pageNum + " Bilder\n");
-        //reader.read(Index der Seite) //
-        //return reader;
     }
 
     /**
