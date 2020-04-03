@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageOperation {
-    private List<BufferedImage> ImgList;
 
-    public ImageOperation(final List<BufferedImage> ImgList) {
-        this.ImgList = ImgList;
-    }
 
-    public ImageOperation() {
-    } //Default constructor
-
-    public double calculateAvg(ArrayList pixelArray) { //Calculates the average intensity of a pixel array.
+    /**
+     * @param pixelArray Pixel array for mean calculation
+     * @return returns the mean intensity of pixel array as double.
+     */
+    public double calculateAvg(final ArrayList pixelArray) {
         double avg = 0.0;
         double dummy = 0.0;
         for (int i = 0; i < pixelArray.size(); i++) {
@@ -24,8 +21,12 @@ public class ImageOperation {
         return avg;
     }
 
-    public double calculateStd(ArrayList pixelArray) { //Calculates the standard deviation of a pixel array.
-        double avg = calculateAvg(pixelArray);
+    /**
+     * @param pixelArray Pixel array for standard deviation calculation.
+     * @return The standard deviation as double value.
+     */
+    public double calculateStd(final ArrayList pixelArray) {
+        final double avg = calculateAvg(pixelArray);
         double dummy = 0.0;
         for (int i = 0; i < pixelArray.size(); i++) {
             dummy += Math.pow((double) pixelArray.get(i) - avg, 2);
