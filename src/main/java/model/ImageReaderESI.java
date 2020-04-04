@@ -53,7 +53,7 @@ public class ImageReaderESI {
      * @param frameNo Index of the frame.
      * @param xPos    X-Coordinate of the pixel.
      * @param yPos    Y-Coordinate of the pixel.
-     * @return Returns the brightness of a pixel of a frame at position 'xPos,yPos' in a movie of length 'movieLength'
+     * @return Returns the brightness of a pixel of a frame at position 'xPos,yPos'
      * @throws IOException Throws exception in case of error while reading the frame.
      */
     public double getPixelIntensity(final int frameNo, final int xPos, final int yPos) throws IOException {
