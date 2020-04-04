@@ -16,7 +16,7 @@ final class ESIApp {
         final ImageReaderESI readerESI = new ImageReaderESI("/src/main/resources/QD655.tif");
         readerESI.read();
         final ImageOperation ops = new ImageOperation();
-
+        /*
         //prints the intensity value of the first image at pos 0,0.
         System.out.format(Double.toString(readerESI.getPixelIntensity(0, 0, 0)));
 
@@ -27,7 +27,8 @@ final class ESIApp {
         //prints the calculated standard deviation of a pixel at pos 0,0 starting at frame 0 endig at frame 4999.
         System.out.format("Std: " + ops.calculateStd(
                 readerESI.getFullPixelArray(0, 0, 0, PAGENUM)));
-
+                */
+        System.out.println(ops.calculateEntropyOfPxArray(readerESI.getFullPixelArray(0, 0, 0, PAGENUM)));
 
     }
 }

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ImageReaderESI {
 
@@ -43,8 +44,8 @@ public class ImageReaderESI {
         }
         // We are just looking for the first reader compatible:
         /*javax.imageio.ImageReader*/
-        reader = iterator.next();
-        reader.setInput(is);
+        this.reader = iterator.next();
+        this.reader.setInput(is);
     }
 
     /**
@@ -68,8 +69,8 @@ public class ImageReaderESI {
      * @return The intensities of a specific pixel over all frames.
      * @throws IOException Throws IOException in case there's an error while reading the frame.
      */
-    public ArrayList<Double> getFullPixelArray(final int xPos, final int yPos, final int startFrame, final int endframe) throws IOException {
-        final ArrayList<Double> pxIntensities = new ArrayList<>();
+    public List<Double> getFullPixelArray(final int xPos, final int yPos, final int startFrame, final int endframe) throws IOException {
+        final List<Double> pxIntensities = new ArrayList<>();
 
         for (int i = startFrame; i < endframe; i++) {
             pxIntensities.add(getPixelIntensity(i, xPos, yPos));
