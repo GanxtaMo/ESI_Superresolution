@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ImageOperation {
 
+    private ArrayList<Double> probabilityArray = new ArrayList<Double>();
 
     /**
      * @param pixelArray Pixel array for mean calculation
@@ -35,8 +36,23 @@ public class ImageOperation {
 
     public double calculateProbabilityForPxValue(final double pxValue, final ArrayList pixelArray) {
         double p = 0.0;
+        int counter = 0;
+        int convValue = (int) pxValue;
 
-        return p;
+        if (probabilityArray.get(convValue) != 0) { //checks if the probability for the convValue already exists to avoid recalculation.
+            return probabilityArray.get(convValue);
+        } else {
+            for (int i = 0; i < pixelArray.size(); i++) {
+                if (convValue == (int) (pixelArray.get(i))) {
+                    counter++;
+                }
+            }
+            p = counter / pixelArray.size();
+            probabilityArray.add(convValue, p);
+            return p;
+            /*adds the probability of a given pixel intensity to the ArrayList at
+         index=convValue to build up a performance table.*/
+        }
     }
 
     public double calculateEntropyOfPxArray(final ArrayList pixelArray) {
