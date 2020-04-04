@@ -6,6 +6,7 @@ import javax.imageio.stream.ImageInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -69,11 +70,18 @@ public class ImageReaderESI {
      * @return The intensities of a specific pixel over all frames.
      * @throws IOException Throws IOException in case there's an error while reading the frame.
      */
-    public List<Double> getFullPixelArray(final int xPos, final int yPos, final int startFrame, final int endframe) throws IOException {
-        final List<Double> pxIntensities = new ArrayList<>();
-
+    public HashMap<Double, Integer> getFullPixelArray(final int xPos, final int yPos, final int startFrame, final int endframe) throws IOException {
+        int count = 1;
+        int tmp = 0;
+        final HashMap<Double, Integer> pxIntensities = new HashMap<>();
         for (int i = startFrame; i < endframe; i++) {
-            pxIntensities.add(getPixelIntensity(i, xPos, yPos));
+            if (pxIntensities.get(getPixelIntensity(i, xPos, yPos)) == null) {
+                pxIntensities.put(getPixelIntensity(i, xPos, yPos), count);
+            } else {
+                tmp = pxIntensities.get(getPixelIntensity(i, xPos, yPos));
+                tmp++;
+                pxIntensities.put(getPixelIntensity(i, xPos, yPos), tmp);
+            }
         }
 
         return pxIntensities;

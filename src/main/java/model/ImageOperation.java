@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ImageOperation {
 
@@ -39,39 +38,30 @@ public class ImageOperation {
      * @param pixelArray
      * @return
      */
-    public double calculateProbabilityForPxValue(final double pxValue, final List<Double> pixelArray) {
+    public double calculateProbabilityForPxValue(final double pxValue, final HashMap<Double, Integer> pixelArray) {
         double probability = 0.0;
         int counter = 0;
         final int convValue = (int) pxValue;
-        final List<Double> probabilityArray = new ArrayList<>();
-
-        if (probabilityArray.get(convValue) == null) {
-            for (final double d : pixelArray) {
-                if (convValue == (int) (d)) {
-                    counter++;
-                }
-            }
-            probability = counter / pixelArray.size();
-            probabilityArray.add(convValue, probability);
-            return probability;
-            /*adds the probability of a given pixel intensity to the ArrayList at
-         index=convValue to build up a performance table.*/
+        probability = pixelArray.get(pxValue) / pixelArray.size();
+        return probability;
 
 
-        } else {
-            return probabilityArray.get(convValue);
-            /*checks if the probability for the convValue already exists to avoid recalculation.*/
-        }
     }
 
     /**
      * @param pixelArray
      * @return
      */
-    public double calculateEntropyOfPxArray(final List<Double> pixelArray) {
+    public double calculateEntropyOfPxArray(final HashMap<Double, Integer> pixelArray) {
         double h = 0.0;
-        for (final double d : pixelArray) {
-            final double tmp = calculateProbabilityForPxValue(d, pixelArray);
+
+        Set entrySet = pixelArray.entrySet();
+
+        Iterator it = entrySet.iterator();
+
+        while (it.hasNext()) {
+            Map.Entry me = (Map.Entry) it.next();
+            final double tmp = calculateProbabilityForPxValue((double) me.getKey(), pixelArray);
             h += tmp * Math.log10(tmp);
         }
         return -h;
