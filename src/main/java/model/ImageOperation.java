@@ -33,7 +33,7 @@ public class ImageOperation {
         return Math.sqrt(dummy / pixelArray.size());
     }
 
-    public double calculateProbabilityForPxValue(final double pxValue) {
+    public double calculateProbabilityForPxValue(final double pxValue, final ArrayList pixelArray) {
         double p = 0.0;
 
         return p;
