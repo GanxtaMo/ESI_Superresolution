@@ -1,8 +1,6 @@
 package model;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ImageOperation {
 
@@ -35,5 +33,9 @@ public class ImageOperation {
         return Math.sqrt(dummy / pixelArray.size());
     }
 
+    public double calculateProbabilityForPxValue(final double pxValue) {
+
+        return 0;
+    }
 
 }
