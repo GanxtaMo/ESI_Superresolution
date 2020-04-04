@@ -34,8 +34,14 @@ public class ImageOperation {
     }
 
     public double calculateProbabilityForPxValue(final double pxValue) {
+        double p = 0.0;
 
-        return 0;
+        return p;
     }
 
+    public double calculateEntropyOfPxArray(final ArrayList pixelArray) {
+        double h = 0.0;
+
+        return h;
+    }
 }
