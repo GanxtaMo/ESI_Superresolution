@@ -14,6 +14,7 @@ final class ESIApp {
 
     public static void main(final String... args) throws IOException {
         final ImageReaderESI readerESI = new ImageReaderESI("/src/main/resources/QD655.tif");
+        readerESI.read();
         final ImageOperation ops = new ImageOperation();
 
         //prints the intensity value of the first image at pos 0,0.

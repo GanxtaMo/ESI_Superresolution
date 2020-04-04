@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class ImageOperation {
 
 
-
     /**
      * @param pixelArray Pixel array for mean calculation
      * @return returns the mean intensity of pixel array as double.
@@ -34,30 +33,42 @@ public class ImageOperation {
         return Math.sqrt(dummy / pixelArray.size());
     }
 
+    /**
+     * @param pxValue
+     * @param pixelArray
+     * @return
+     */
     public double calculateProbabilityForPxValue(final double pxValue, final ArrayList pixelArray) {
-        double p = 0.0;
+        double probability = 0.0;
         int counter = 0;
-        int convValue = (int) pxValue;
-        ArrayList<Double> probabilityArray = new ArrayList<Double>();
+        final int convValue = (int) pxValue;
+        final ArrayList<Double> probabilityArray = new ArrayList<>();
 
-        if (probabilityArray.get(convValue) != null) { //checks if the probability for the convValue already exists to avoid recalculation.
-            return probabilityArray.get(convValue);
-        } else {
+        if (probabilityArray.get(convValue) == null) {
             for (int i = 0; i < pixelArray.size(); i++) {
                 if (convValue == (int) (pixelArray.get(i))) {
                     counter++;
                 }
             }
-            p = counter / pixelArray.size();
-            probabilityArray.add(convValue, p);
-            return p;
+            probability = counter / pixelArray.size();
+            probabilityArray.add(convValue, probability);
+            return probability;
             /*adds the probability of a given pixel intensity to the ArrayList at
          index=convValue to build up a performance table.*/
+
+
+        } else {
+            return probabilityArray.get(convValue);
+            /*checks if the probability for the convValue already exists to avoid recalculation.*/
         }
     }
 
+    /**
+     * @param pixelArray
+     * @return
+     */
     public double calculateEntropyOfPxArray(final ArrayList pixelArray) {
-        double h = 0.0;
+        final double h = 0.0;
 
         return h;
     }

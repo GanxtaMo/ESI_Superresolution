@@ -20,9 +20,7 @@ public class ImageReaderESI {
      * @throws IOException Throws an IOException when path is invalid.
      */
     public ImageReaderESI(final String path) throws IOException {
-
         this.path = path;
-        read();
     }
 
 
