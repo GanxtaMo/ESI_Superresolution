@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ImageOperation {
 
-    private ArrayList<Double> probabilityArray = new ArrayList<Double>();
+
 
     /**
      * @param pixelArray Pixel array for mean calculation
@@ -38,8 +38,9 @@ public class ImageOperation {
         double p = 0.0;
         int counter = 0;
         int convValue = (int) pxValue;
+        ArrayList<Double> probabilityArray = new ArrayList<Double>();
 
-        if (probabilityArray.get(convValue) != 0) { //checks if the probability for the convValue already exists to avoid recalculation.
+        if (probabilityArray.get(convValue) != null) { //checks if the probability for the convValue already exists to avoid recalculation.
             return probabilityArray.get(convValue);
         } else {
             for (int i = 0; i < pixelArray.size(); i++) {
