@@ -19,6 +19,22 @@ public class ImageOperation {
         return avg;
     }
 
+    public double calculateAvg(final HashMap<Double, Integer> pixelArray) {
+        double avg = 0.0;
+        double dummy = 0.0;
+        Set entrySet = pixelArray.entrySet();
+
+        Iterator it = entrySet.iterator();
+
+        while (it.hasNext()) {
+            Map.Entry me = (Map.Entry) it.next();
+            double d = (double) me.getKey();
+            dummy += d;
+        }
+        return dummy / (double) pixelArray.size();
+    }
+
+
     /**
      * @param pixelArray Pixel array for standard deviation calculation.
      * @return The standard deviation as double value.
@@ -69,9 +85,27 @@ public class ImageOperation {
         return h;
     }
 
-    public double higherOrderMoment() {
+    /**
+     * @param order
+     * @param pixelArray
+     * @return
+     */
+    public double higherOrderMoment(final int order, final HashMap<Double, Integer> pixelArray) {
 
-        return 0.0;
+        final double avg = calculateAvg(pixelArray);
+        final List<Double> powerOfDiffernces = new ArrayList<>();
+
+        Set entrySet = pixelArray.entrySet();
+
+        Iterator it = entrySet.iterator();
+
+        while (it.hasNext()) {
+            Map.Entry me = (Map.Entry) it.next();
+            double d = (double) me.getKey();
+            powerOfDiffernces.add(Math.pow((double) (me.getKey()) - avg, order));
+        }
+
+        return calculateAvg(powerOfDiffernces);
 
     }
 }
