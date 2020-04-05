@@ -42,7 +42,10 @@ public class ImageOperation {
         double probability = 0.0;
         int counter = 0;
         final int convValue = (int) pxValue;
+        System.out.println("gerundete Pixelintensität ist: " + convValue);
+        System.out.println("Häufigkeit der Intensität ist: " + pixelArray.get(pxValue));
         probability = pixelArray.get(pxValue) / pixelArray.size();
+        System.out.println("relative Häufigkeit ist:" + probability);
         return probability;
 
 
@@ -61,8 +64,10 @@ public class ImageOperation {
 
         while (it.hasNext()) {
             Map.Entry me = (Map.Entry) it.next();
-            final double tmp = calculateProbabilityForPxValue((double) me.getKey(), pixelArray);
-            h += tmp * Math.log10(tmp);
+            double d = (double) me.getKey();
+            double tmp = calculateProbabilityForPxValue((double) me.getKey(), pixelArray);
+            System.out.println(tmp);
+            h += tmp * Math.log(tmp);
         }
         return -h;
     }
