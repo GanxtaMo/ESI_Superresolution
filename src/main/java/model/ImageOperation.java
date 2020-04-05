@@ -42,10 +42,7 @@ public class ImageOperation {
         double probability = 0.0;
         int counter = 0;
         final int convValue = (int) pxValue;
-        System.out.println("gerundete Pixelintensität ist: " + convValue);
-        System.out.println("Häufigkeit der Intensität ist: " + pixelArray.get(pxValue));
-        probability = pixelArray.get(pxValue) / pixelArray.size();
-        System.out.println("relative Häufigkeit ist:" + probability);
+        probability = pixelArray.get(pxValue) / (double) pixelArray.size();
         return probability;
 
 
@@ -69,7 +66,7 @@ public class ImageOperation {
             System.out.println(tmp);
             h += tmp * Math.log(tmp);
         }
-        return -h;
+        return h;
     }
 
     public double higherOrderMoment() {
