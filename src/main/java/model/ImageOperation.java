@@ -90,22 +90,53 @@ public class ImageOperation {
      * @param pixelArray
      * @return
      */
-    public double higherOrderMoment(final int order, final HashMap<Double, Integer> pixelArray) {
+    public double centralizedHigherOrderMoment(final int order, final HashMap<Double, Integer> pixelArray) {
 
         final double avg = calculateAvg(pixelArray);
-        final List<Double> powerOfDiffernces = new ArrayList<>();
+        final List<Double> powerOfDifferences = new ArrayList<>();
 
         Set entrySet = pixelArray.entrySet();
-
         Iterator it = entrySet.iterator();
 
         while (it.hasNext()) {
             Map.Entry me = (Map.Entry) it.next();
             double d = (double) me.getKey();
-            powerOfDiffernces.add(Math.pow((double) (me.getKey()) - avg, order));
+            powerOfDifferences.add(Math.pow((double) (me.getKey()) - avg, order));
         }
 
-        return calculateAvg(powerOfDiffernces);
+        return calculateAvg(powerOfDifferences);
 
     }
+
+    /**
+     * @param order
+     * @param pixelArray1
+     * @param pixelArray2
+     * @return
+     */
+    public double centralizedJointHigherOrderMoment(final int order, final HashMap<Double, Integer> pixelArray1, final HashMap<Double, Integer> pixelArray2) {
+        final double avgPx1 = calculateAvg(pixelArray1);
+        final double avgPx2 = calculateAvg(pixelArray2);
+
+        final List<Double> powerOfDifferences = new ArrayList<>();
+
+        Set entrySetPx1 = pixelArray1.entrySet();
+        Iterator itPx1 = entrySetPx1.iterator();
+
+        Set entrySetPx2 = pixelArray1.entrySet();
+        Iterator itPx2 = entrySetPx2.iterator();
+
+        while (itPx1.hasNext()) {
+            Map.Entry mePx1 = (Map.Entry) itPx1.next();
+            Map.Entry mePx2 = (Map.Entry) itPx2.next();
+            double dPx1 = (double) mePx1.getKey();
+            double dPx2 = (double) mePx2.getKey();
+            powerOfDifferences.add(Math.pow((double) (mePx2.getKey()) - avgPx2, order) * Math.pow((double) (mePx1.getKey()) - avgPx1, order));
+        }
+
+        return calculateAvg(powerOfDifferences);
+
+    }
+
+
 }
