@@ -139,4 +139,26 @@ public class ImageOperation {
     }
 
 
+    public double xEntropy(double px1, double px2, final HashMap<Double, Integer> pixelArray1, final HashMap<Double, Integer> pixelArray2) {
+
+        double xH = 0.0;
+
+        Set entrySetPx1 = pixelArray1.entrySet();
+        Iterator itPx1 = entrySetPx1.iterator();
+
+        Set entrySetPx2 = pixelArray1.entrySet();
+        Iterator itPx2 = entrySetPx2.iterator();
+
+        while (itPx1.hasNext()) { //assuming that both hashmaps are of the same size
+            Map.Entry mePx1 = (Map.Entry) itPx1.next();
+            Map.Entry mePx2 = (Map.Entry) itPx2.next();
+            double dPx1 = (double) mePx1.getKey();
+            double dPx2 = (double) mePx2.getKey();
+            xH += calculateProbabilityForPxValue(dPx1, pixelArray1) * Math.log10(calculateProbabilityForPxValue(dPx2, pixelArray2));
+        }
+
+        return xH;
+    }
+
+
 }
