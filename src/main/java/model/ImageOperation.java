@@ -139,7 +139,7 @@ public class ImageOperation {
     }
 
 
-    public double xEntropy(double px1, double px2, final HashMap<Double, Integer> pixelArray1, final HashMap<Double, Integer> pixelArray2) {
+    public double calculateXentropy(double px1, double px2, final HashMap<Double, Integer> pixelArray1, final HashMap<Double, Integer> pixelArray2) {
 
         double xH = 0.0;
 
