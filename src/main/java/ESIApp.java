@@ -1,3 +1,4 @@
+import model.EsiCLI;
 import model.ImageOperation;
 import model.ImageReaderESI;
 
@@ -13,6 +14,9 @@ final class ESIApp {
 
 
     public static void main(final String... args) throws IOException {
+        //todo: View has to chose if cli mode or gui mode
+        EsiCLI esiCLI = new EsiCLI(args);
+
         final ImageReaderESI readerESI = new ImageReaderESI("/src/main/resources/QD655.tif");
         readerESI.read();
         final ImageOperation ops = new ImageOperation();
