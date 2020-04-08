@@ -15,21 +15,36 @@ public class EsiCLI {
     private String[] args;
     private CmdLineParser parser;
     private String pfad;
+
+    public EsiCLI() {
+
+    }
+
     @Argument
     private List<String> arguments = new ArrayList<>();
 
     @Option(name = path, aliases = "-p", usage = "specifies path")
     private boolean pathBool;
 
-
-    public EsiCLI(final String... args) {
-        this.args = args;
-
+    public List<String> getArguments() {
+        return arguments;
     }
 
     public void parse(String... args) throws CmdLineException {
         CmdLineParser parser = new CmdLineParser(this);
         parser.parseArgument(args);
+        this.args = args;
+        for (String s : arguments) {
+            System.err.println("Program argument:" + s);
+        }
+        for (int i = 0; i < args.length; i++) {
+            System.err.println(args[i]);
+        }
+    }
+
+    // todo: method checks if parameter valid
+    public void checkParams() {
+
     }
 
 
