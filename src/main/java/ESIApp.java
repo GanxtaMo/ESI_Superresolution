@@ -1,5 +1,5 @@
 import model.EsiCLI;
-import org.kohsuke.args4j.*;
+import org.kohsuke.args4j.CmdLineException;
 
 import java.io.IOException;
 
