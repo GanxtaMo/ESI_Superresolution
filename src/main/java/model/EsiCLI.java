@@ -15,6 +15,7 @@ public class EsiCLI {
     private String[] args;
     private CmdLineParser parser;
     private String pfad;
+    private final String startFrame ="--startframe";
 
     public EsiCLI() {
 
@@ -25,6 +26,9 @@ public class EsiCLI {
 
     @Option(name = path, aliases = "-p", usage = "specifies path")
     private boolean pathBool;
+
+    @Option(name=startFrame , aliases = "-s" ,usage = "specifies start frame")
+    private boolean startFramebool;
 
     public List<String> getArguments() {
         return arguments;
@@ -44,7 +48,7 @@ public class EsiCLI {
 
     // todo: method checks if parameter valid
     public void checkParams() {
-
+        
     }
 
 
