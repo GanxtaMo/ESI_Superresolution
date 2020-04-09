@@ -48,7 +48,7 @@ public class EsiCLI {
 
     // todo: method checks if parameter valid
     public void checkParams() {
-        
+
     }
 
 
