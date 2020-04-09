@@ -79,7 +79,7 @@ public class ImageOperation {
             Map.Entry me = (Map.Entry) it.next();
             double d = (double) me.getKey();
             double tmp = calculateProbabilityForPxValue((double) me.getKey(), pixelArray);
-            System.out.println(tmp);
+            //System.out.println(tmp);
             h += tmp * Math.log(tmp);
         }
         return h;
