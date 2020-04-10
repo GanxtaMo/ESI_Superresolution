@@ -16,7 +16,7 @@ public class ImageWriterESI {
 
     public void writePixel(int x, int y, double value) {
         BufferedImage theImage = new BufferedImage(x, y,
-            BufferedImage.TYPE_BYTE_BINARY);
+            BufferedImage.TYPE_BYTE_GRAY);
 
         theImage.setRGB(x, y, (int) (value));
 
