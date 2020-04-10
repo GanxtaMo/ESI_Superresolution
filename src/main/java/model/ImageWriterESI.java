@@ -8,7 +8,6 @@ import java.io.IOException;
 public class ImageWriterESI {
 
     private String path;
-    private javax.imageio.ImageWriter writer; //ImageReader read set as global
 
     public ImageWriterESI(final String path) throws IOException {
         this.path = path;
