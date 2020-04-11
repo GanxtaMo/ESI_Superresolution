@@ -1,4 +1,5 @@
 import model.EsiCLI;
+import model.ImageWriterESI;
 import org.kohsuke.args4j.CmdLineException;
 
 import java.io.IOException;
@@ -16,6 +17,10 @@ final class ESIApp {
         //todo: View has to chose if cli mode or gui mode
         EsiCLI esiCLI = new EsiCLI();
         esiCLI.parse(args);
+        ImageWriterESI imw = new ImageWriterESI(10, 10, "test.tiff");
+        imw.setPixelValue(5, 5, 120);
+        imw.saveToFile();
+
         // pfad: "/src/main/resources/QD655.tif"
         //  final ImageReaderESI readerESI = new ImageReaderESI(esiCLI.getArguments().get(0));
         //  readerESI.read();
