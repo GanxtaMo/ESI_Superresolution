@@ -1,7 +1,6 @@
 package model;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,18 +16,14 @@ public class ImageWriterESI {
     public ImageWriterESI(int imgWidth, int imgHeight, String path) {
         this.imgWidth = imgWidth;
         this.imgHeight = imgHeight;
-        theImage = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
+        theImage = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_BYTE_GRAY);
         this.path = path;
     }
 
     public void setPixelValue(int xPos, int yPos, double value) {
-        Color c = new Color((int) value);
-        int red = ((int) value);
-        int green = ((int) value);
-        int blue = ((int) value);
-        Color greyScaleColor = new Color(red + green + blue,
-            red + green + blue, red + green + blue);
-        theImage.setRGB(xPos, yPos, greyScaleColor.getRGB());
+        double[] val = new double[1];
+        val[0] = value;
+        theImage.getRaster().setPixel(xPos, yPos, val);
         //theImage.setRGB(xPos,yPos,(int)value);
 
     }

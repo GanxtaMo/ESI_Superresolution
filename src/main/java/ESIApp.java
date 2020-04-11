@@ -18,7 +18,7 @@ final class ESIApp {
         EsiCLI esiCLI = new EsiCLI();
         esiCLI.parse(args);
         ImageWriterESI imw = new ImageWriterESI(10, 10, "test.tiff");
-        imw.setPixelValue(5, 5, 120);
+        imw.setPixelValue(5, 5, 12000);
         imw.saveToFile();
 
         // pfad: "/src/main/resources/QD655.tif"
