@@ -1,4 +1,6 @@
 import model.EsiCLI;
+import model.ImageOperation;
+import model.ImageReaderESI;
 import model.ImageWriterESI;
 import org.kohsuke.args4j.CmdLineException;
 
@@ -17,14 +19,25 @@ final class ESIApp {
         //todo: View has to chose if cli mode or gui mode
         EsiCLI esiCLI = new EsiCLI();
         esiCLI.parse(args);
-        ImageWriterESI imw = new ImageWriterESI(10, 10, "test.tiff");
-        imw.setPixelValue(5, 5, 120);
+
+
+        final ImageReaderESI readerESI = new ImageReaderESI("/src/main/resources/QD655.tif");
+        readerESI.read();
+        final ImageOperation ops = new ImageOperation();
+
+
+        ImageWriterESI imw = new ImageWriterESI(40, 40, "average.tiff");
+        for (int i = 0; i < 39; i++)
+            for (int j = 0; j < 39; j++) {
+                int val = (int) ops.calculateAvg(readerESI.getFullPixelArray(i, j, 1, 5000));
+                imw.setPixelValue(i, j, val);
+            }
         imw.saveToFile();
 
         // pfad: "/src/main/resources/QD655.tif"
         //  final ImageReaderESI readerESI = new ImageReaderESI(esiCLI.getArguments().get(0));
         //  readerESI.read();
-        //  final ImageOperation ops = new ImageOperation();
+
         /*
         //prints the intensity value of the first image at pos 0,0.
         System.out.format(Double.toString(readerESI.getPixelIntensity(0, 0, 0)));

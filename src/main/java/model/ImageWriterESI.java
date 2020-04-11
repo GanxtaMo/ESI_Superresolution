@@ -16,7 +16,7 @@ public class ImageWriterESI {
     public ImageWriterESI(int imgWidth, int imgHeight, String path) {
         this.imgWidth = imgWidth;
         this.imgHeight = imgHeight;
-        theImage = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_BYTE_GRAY);
+        theImage = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_USHORT_GRAY);
         this.path = path;
     }
 
@@ -24,8 +24,6 @@ public class ImageWriterESI {
         double[] val = new double[1];
         val[0] = value;
         theImage.getRaster().setPixel(xPos, yPos, val);
-        //theImage.setRGB(xPos,yPos,(int)value);
-
     }
 
     public void saveToFile() {
