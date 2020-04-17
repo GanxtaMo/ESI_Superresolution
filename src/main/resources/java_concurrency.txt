@@ -1,1 +1,3 @@
 https://jaxenter.de/extreme-java-concurrency-66082
+
+https://www.vogella.com/tutorials/JavaConcurrency/article.html
